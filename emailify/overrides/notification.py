@@ -40,10 +40,10 @@ class CustomNotification(Notification):
 
         # Get subject - use template if available
         if self.email_template:
-            template = get_email_template(self.email_template, context)
+            doc = context.get("doc", {})
+            template = get_email_template(self.email_template, doc)
             subject = template.get("subject")
             message = template.get("message")
-            frappe.log_error("email", f"{template} {context}")
         else:
             subject = self.subject
             if "{" in subject:
