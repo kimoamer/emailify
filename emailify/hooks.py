@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Notification" : "public/js/notification.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "emailify.install.before_install"
-# after_install = "emailify.install.after_install"
+after_install = "emailify.patches.v1_0_add_email_template_field.execute"
 
 # Uninstallation
 # ------------
@@ -129,9 +129,9 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+    "Notification": "emailify.overrides.notification.CustomNotification"
+}
 
 # Document Events
 # ---------------
