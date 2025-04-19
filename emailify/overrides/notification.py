@@ -41,7 +41,7 @@ class CustomNotification(Notification):
         # Get subject - use template if available
         if self.email_template:
             doc = context.get("doc", {})
-            template = get_email_template(self.email_template, doc)
+            template = get_email_template(self.email_template, doc.as_dict())
             subject = template.get("subject")
             message = template.get("message")
         else:
