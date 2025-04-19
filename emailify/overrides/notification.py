@@ -7,7 +7,7 @@ from frappe import _
 from frappe.utils import nowdate, validate_email_address
 from frappe.utils.jinja import validate_template
 from frappe.utils.safe_exec import get_safe_globals
-
+from frappe.email.doctype.email_template.email_template import get_email_template
 
 
 class CustomNotification(Notification):
@@ -40,9 +40,9 @@ class CustomNotification(Notification):
 
         # Get subject - use template if available
         if self.email_template:
-            template = frappe.get_doc("Email Template", self.email_template)
-            subject = frappe.render_template(template.subject, context)
-            message = frappe.render_template(template.response_html, context)
+            template = get_email_template(self.email_template, context)
+            subject = template.get("subject")
+            message = template.get("message")
         else:
             subject = self.subject
             if "{" in subject:
