@@ -43,7 +43,7 @@ class CustomNotification(Notification):
             template = get_email_template(self.email_template, context)
             subject = template.get("subject")
             message = template.get("message")
-            frappe.log_error("email", f"{template}")
+            frappe.log_error("email", f"{template} {context}")
         else:
             subject = self.subject
             if "{" in subject:
